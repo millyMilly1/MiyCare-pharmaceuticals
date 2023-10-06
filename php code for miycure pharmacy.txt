@@ -1,0 +1,53 @@
+php code for miycure pharmacy
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fullName = $_POST["fullName"];
+    $mailingAddress = $_POST["mailingAddress"];
+    $city = $_POST["city"];
+    $state = $_POST["state"];
+    $zipCode = $_POST["zipCode"];
+    $email = $_POST["email"];
+    $phoneNumber = $_POST["phoneNumber"];
+    $jobPosition = $_POST["jobPosition"];
+    $employmentType = $_POST["employmentType"];
+    $workEthics = $_POST["workEthics"];
+    $milestone = $_POST["milestone"];
+    $strengthsAndWeakness = $_POST["strengthsAndWeakness"];
+    $taxFiled = $_POST["taxFiled"];
+
+    // Email recipient's address
+    $recipientEmail = "recipient@example.com";
+
+    // Subject of the email
+    $subject = "Job Application Form Submission";
+
+    // Build the message
+    $message = "Full Name: $fullName\n";
+    $message .= "Mailing Address (With Apt# Number): $mailingAddress\n";
+    $message .= "City: $city\n";
+    $message .= "State: $state\n";
+    $message .= "Zip Code: $zipCode\n";
+    $message .= "Email: $email\n";
+    $message .= "Phone Number: $phoneNumber\n";
+    $message .= "Job Position: $jobPosition\n";
+    $message .= "Employment Type: $employmentType\n";
+    $message .= "Work Ethics: $workEthics\n";
+    $message .= "Milestone: $milestone\n";
+    $message .= "Strengths and Weakness: $strengthsAndWeakness\n";
+    $message .= "Tax Filed for 2022: $taxFiled\n";
+
+    // Additional headers
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+
+    // Send the email
+    if (mail($recipientEmail, $subject, $message, $headers)) {
+        // Redirect to a thank-you page
+        header("Location: thank-you.html");
+        exit();
+    } else {
+        echo "Message could not be sent.";
+    }
+}
+?>
